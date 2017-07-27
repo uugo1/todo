@@ -1,0 +1,39 @@
+
+
+<!--
+  Generated template for the Task component.
+
+  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+
+    
+
+ <!-- Todo listing -->
+    <div class="card horizontal" *ngFor="let todo of records; let indx = index">
+      <div class="card-stacked">
+        <div class="card-content">
+          	<div [hidden]="!todo.edit" >
+						<div class="input-group">
+      	 <input class="form-control" type="text" [(ngModel)]="todo.name"  (keyup.enter)="endEdit(todo)" (blur)="endEdit(todo)">
+						</div>
+					</div>
+					<div [hidden]="todo.edit">
+              <label>
+              <h6 (click)="beginEdit(todo)">{{todo.name}}</h6>
+              </label>
+					</div>
+        </div>
+      </div>
+       <div class="">
+       <a (click)="deleteTask(todo, indx)" class="btn-large waves-effect waves-light red"><i class="material-icons">delete_forever</i></a>
+      </div>
+    </div>
+ 
+  <div class="row center">
+        <a (click)="addTask()" class="btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+      </div>
+      <br><br>
+
+
+ 
