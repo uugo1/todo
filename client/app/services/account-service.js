@@ -18,14 +18,32 @@ var AccountService = (function () {
         this.baseurl = 'http://localhost:5000/api/';
         this.data = null;
     }
-    AccountService.prototype.loginUser = function (item) {
+    AccountService.prototype.create_a_user = function (user) {
         var _this = this;
-        var url = this.baseurl + 'Account/Login';
+        var url = this.baseurl + 'user';
         return new Promise(function (resolve) {
             var headers = new http_1.Headers();
             headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             headers.append("Accept", "text/html; charset=UTF-8");
-            _this.http.post(url, item, {
+            _this.http.post(url, user, {
+                headers: headers
+            }).map(function (res) { return res.json(); }).subscribe(function (data) {
+                console.log(data);
+                _this.data = data;
+                resolve(_this.data);
+            }, function (error) {
+                console.log(error.json());
+            });
+        });
+    };
+    AccountService.prototype.authenticate_a_user = function (user) {
+        var _this = this;
+        var url = this.baseurl + 'user/auth';
+        return new Promise(function (resolve) {
+            var headers = new http_1.Headers();
+            headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            headers.append("Accept", "text/html; charset=UTF-8");
+            _this.http.post(url, user, {
                 headers: headers
             }).map(function (res) { return res.json(); }).subscribe(function (data) {
                 console.log(data);

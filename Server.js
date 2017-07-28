@@ -4,8 +4,10 @@ var express = require('express'),
   var path = require('path');
   mongoose = require('mongoose'),
   Task = require('./models/todoModel'),
+  User = require('./models/userModel'),
   bodyParser = require('body-parser');
-
+  var session = require('express-session');
+   var flash = require('connect-flash');
   // mongoose.Promise = global.Promise;
   // mongoose.connect('mongodb://localhost:27017/tododb'); 
   var promise = mongoose.connect('mongodb://localhost:27017/tododb', {
@@ -17,9 +19,12 @@ promise.then(function(db) {
 // bodyParser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'mybasictodomeanappabc' })); // session secret
+app.use(flash()); 
 
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
+var user = require('./routes/user');
 // var routes = require('./api/routes/todoRoutes');
 // routes(app);
   // View Engine
@@ -32,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use('/', index);
 app.use('/api', tasks);
-
+app.use('/api', user);
 app.listen(port);
 
 //    //Middleware

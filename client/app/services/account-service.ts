@@ -11,26 +11,48 @@ export class AccountService {
        this.baseurl = 'http://localhost:5000/api/';
        this.data = null;
   }
-
-
-
-  loginUser(item) {
-       var url = this.baseurl + 'Account/Login';
+ 
+  create_a_user(user) {
+   var url = this.baseurl + 'user';
       return new Promise(resolve => {
+              var headers: Headers = new Headers();
+              headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+              headers.append("Accept", "text/html; charset=UTF-8");
 
-          var headers: Headers = new Headers();
-          headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-          headers.append("Accept", "text/html; charset=UTF-8");
-          this.http.post(url, item, {
-              headers : headers
-          }).map(res => res.json()).subscribe(data => {
-              console.log(data);
-              this.data = data;
-              resolve(this.data);
+              this.http.post(url, user, {
+                  headers: headers
+              }).map(res => res.json()).subscribe(data => {
+                  console.log(data);
+                  this.data = data;
+                  resolve(this.data);
+                 
               }, error => {
                   console.log(error.json());
-              });
+        
+                  });
       });
   }
+
+  authenticate_a_user(user) {
+   var url = this.baseurl + 'user/auth';
+      return new Promise(resolve => {
+              var headers: Headers = new Headers();
+              headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+              headers.append("Accept", "text/html; charset=UTF-8");
+
+              this.http.post(url, user, {
+                  headers: headers
+              }).map(res => res.json()).subscribe(data => {
+                  console.log(data);
+                  this.data = data;
+                  resolve(this.data);
+                 
+              }, error => {
+                  console.log(error.json());
+        
+            });
+      });
+  }
+
 
 }

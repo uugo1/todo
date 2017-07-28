@@ -10,11 +10,18 @@ var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
 var app_component_1 = require("./app.component");
 var tasks_component_1 = require("./components/tasks/tasks.component");
+var login_component_1 = require("./components/login/login.component");
 // My services
 var account_service_1 = require("./services/account-service");
 var tasks_service_1 = require("./services/tasks-service");
+var routes = [
+    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'tasks', component: tasks_component_1.TasksComponent },
+];
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,16 +31,24 @@ AppModule = __decorate([
     core_1.NgModule({
         declarations: [
             app_component_1.AppComponent,
-            tasks_component_1.TasksComponent
+            tasks_component_1.TasksComponent,
+            login_component_1.LoginComponent
         ],
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
-            http_1.HttpModule
+            http_1.HttpModule,
+            router_1.RouterModule.forRoot(routes, {
+                enableTracing: true,
+            })
+        ],
+        exports: [
+            router_1.RouterModule
         ],
         providers: [
             account_service_1.AccountService,
-            tasks_service_1.TaskService
+            tasks_service_1.TaskService,
+            { provide: common_1.APP_BASE_HREF, useValue: '/' }
         ],
         bootstrap: [app_component_1.AppComponent]
     })

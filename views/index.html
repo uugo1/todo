@@ -25,65 +25,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 
-    <!--<style>
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400);
-
-body {
-font: normal normal 13px/16px "Open Sans", sans-serif;
-background: #ccc;
-}
-
-.container{
-padding: 20px;
-width: 500px;
-margin: 0 auto;
-margin-top: 40px;
-background: white;
-border-radius: 5px;}
-
-form {
-display: inline-block;
-}
-
-input{
-padding: 4px 15px 4px 5px;
-}
-
-#button{
-display: inline-block;
-background-color:#fc999b;
-color:#ffffff;
-border-radius: 5px;
-text-align:center;
-margin-top:2px;
-padding: 5px 15px;
-}
-
-#button:hover{
-cursor: pointer;
-opacity: .8;}
-
-ul {padding-left: 20px;}
-
-ul li {padding: 5px;color:#000;}
-
-ul li:nth-child(even){background: #dfdfdf;}
-
-.strike{text-decoration: line-through;}
-
-li:hover{
-  cursor: pointer;
- }
-  </style>
-
-    <script>
-$(document).ready(
-    function(){
-   $( "ul" ).sortable();
-
-    }
-);
-  </script>-->
 </head>
     <body>
   <nav class="light-blue lighten-1" role="navigation">
@@ -101,21 +42,35 @@ $(document).ready(
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
          <app-root>Loading..</app-root>
+
+
+
+<!--<ul class="sortable list">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+<li>Item 4</li>
+<li>Item 5</li>
+<li>Item 6</li>
+</ul>-->
       <br><br>
 
     </div>
   </div>
-   <!--<footer class="page-footer black">
-    <div class="footer-copyright">
-      <div class="container">
-     U.I Powered by<a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>-->
 
      <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+ <script src="bower_components/jquery/dist/jquery.sortable.js"></script> 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+ <script>
+		$(function() {
+			$('.sortable').sortable();
+			$('.handles').sortable({
+				handle: 'span'
+			});
+		});
+	</script>
     </body>
 </html>
